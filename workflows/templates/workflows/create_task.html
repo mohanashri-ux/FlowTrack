@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Task | FlowTrack{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4 text-center">Create a New Task</h2>
+
+    <div class="card shadow-sm p-4">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Create Task</button>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

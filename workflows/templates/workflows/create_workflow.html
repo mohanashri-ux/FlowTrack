@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Workflow | FlowTrack{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4 text-center">Create a New Workflow</h2>
+
+    <div class="card shadow-sm p-4">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Create Workflow</button>
+            <a href="{% url 'workflow_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

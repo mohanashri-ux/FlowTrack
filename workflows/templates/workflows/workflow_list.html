@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Workflows | FlowTrack{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">All Workflows</h2>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'create_workflow' %}" class="btn btn-success">Create New Workflow</a>
+    </div>
+
+    {% for wf in workflow_data %}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title">{{ wf.workflow.name }}</h4>
+                <p class="card-text">{{ wf.workflow.description }}</p>
+                <p><strong>Progress:</strong> {{ wf.progress }}%</p>
+
+                <div class="progress mb-2">
+                    <div class="progress-bar" role="progressbar" style="width: {{ wf.progress }}%;" aria-valuenow="{{ wf.progress }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ wf.progress }}%
+                    </div>
+                </div>
+
+                <a href="{% url 'task_list' %}" class="btn btn-primary">View Tasks</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted text-center">No workflows available yet.</p>
+    {% endfor %}
+{% endblock %}
